@@ -3,28 +3,82 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-
-    Example Architecture Diagram:
-    <div class="mermaid">
-      graph TD
-      	A[EventStreams-CloudFunction] -->|HTTPS| B(Keen-DataPipeline)
-      	B --> C{Kafka}
-      	C -->|One| D[Cassandra-Cluster]
-      	C -->|Two| E[Cassandra-Cluster]
-      	C -->|Three| F[Cassandra-Cluster]
+    <br>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          Example Architecture Diagram:
+          <div class="mermaid">
+            graph TD
+              A[EventStreams-CloudFunction] -->|HTTPS| B(Keen - Data Encrypted AES-256)
+              B --> C{Kafka}
+              C -->|One| D[Cassandra-Cluster]
+              C -->|Two| E[Cassandra-Cluster]
+              C -->|Three| F[Cassandra-Cluster]
+          </div>
+        </div>
+        <div class="col">
+          Load Balancer Example:
+          <div class="mermaid">
+            graph TD
+            A[Client] -->|tcp_123| B(Load Balancer)
+            B -->|tcp_456| C[Server1]
+            B -->|tcp_456| D[Server2]
+          </div>
+        </div>
+      </div>
     </div>
 
-    Load Balancer Example:
-    <div class="mermaid">
-      graph TD
-      A[Client] -->|tcp_123| B(Load Balancer)
-      B -->|tcp_456| C[Server1]
-      B -->|tcp_456| D[Server2]
-    </div>
-    
+    <script>
+      var config = {
+        theme:'neutral',
+        logLevel:'fatal',
+        securityLevel:'strict',
+        startOnLoad:true,
+        arrowMarkerAbsolute:false,
+
+        flowchart:{
+          htmlLabels:true,
+          curve:'linear',
+        },
+        sequence:{
+          diagramMarginX:50,
+          diagramMarginY:10,
+          actorMargin:50,
+          width:150,
+          height:65,
+          boxMargin:10,
+          boxTextMargin:5,
+          noteMargin:10,
+          messageMargin:35,
+          messageAlign:'center',
+          mirrorActors:true,
+          bottomMarginAdj:1,
+          useMaxWidth:true,
+          rightAngles:false,
+          showSequenceNumbers:false,
+        },
+        gantt:{
+          titleTopMargin:25,
+          barHeight:20,
+          barGap:4,
+          topPadding:50,
+          leftPadding:75,
+          gridLineStartPadding:35,
+          fontSize:11,
+          fontFamily:'"Open-Sans", "sans-serif"',
+          numberSectionStyles:4,
+          axisFormat:'%Y-%m-%d',
+        }
+      };
+      mermaid.initialize(config);
+    </script>
+
   </body>
 </html>
