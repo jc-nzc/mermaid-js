@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mermaid": "^8.6.0"
+  },
+  "devDependencies": {
+    "mermaid": "^8.6.0"
+  }
+}

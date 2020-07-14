@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+
+    Example Architecture Diagram:
+    <div class="mermaid">
+      graph TD
+      	A[EventStreams-CloudFunction] -->|HTTPS| B(Keen-DataPipeline)
+      	B --> C{Kafka}
+      	C -->|One| D[Cassandra-Cluster]
+      	C -->|Two| E[Cassandra-Cluster]
+      	C -->|Three| F[Cassandra-Cluster]
+    </div>
+
+    Load Balancer Example:
+    <div class="mermaid">
+      graph TD
+      A[Client] -->|tcp_123| B(Load Balancer)
+      B -->|tcp_456| C[Server1]
+      B -->|tcp_456| D[Server2]
+    </div>
+    
+  </body>
+</html>
