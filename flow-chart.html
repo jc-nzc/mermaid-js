@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Flow</title>
+ <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <style>
+    html, body {text-align: center;}
+  </style>
+​
+​
+  <h1>Decision Tree for TrustedForm Script Implementation</h1>
+  <ul>
+    <a href="https://community.activeprospect.com/posts/4076703-callback-function-after-the-certificate-is-inserted-into-your-form">TF Callback Function After the Certificate Is Inserted Into Your Form</a>
+  </ul>
+​
+​
+  <div class="mermaid" id="flow_Graph">
+  graph TD; linkStyle default interpolate basis;
+​
+    Stop(["Cannot Implement"]);
+    style Stop fill:#f00, stroke:#333;
+​
+    Go(["Can be Implemented!"]);
+    style Go fill:#0f0, stroke:#333;
+​
+    Start(["Form/Site"]);
+    style Start fill:#fff, stroke:#333;
+​
+    Support_JS{"Does the<br>page support<br>JavaScript?"};
+    style Support_JS fill:#f1f1f1, stroke:#333;
+​
+    Form_Tag{"Does the page use<br>the &lt; form &gt; tag?"};
+    style Form_Tag fill:#f1f1f1, stroke:#333;
+​
+    Capture_Dynamic{"Can you<br>site capture<br>dynamic fields?"};
+    style Capture_Dynamic fill:#f1f1f1, stroke:#333;
+​
+    Create_Hidden_Field[\"Create a hidden field on the form<br>(get the field 'id' or 'name')"/];
+​
+    Callback[["Use the TF callback to set the<br>value for the hidden field"]];
+​
+    Options{"You have<br>the following<br>implementation<br>options?"};
+    style Options fill:#f1f1f1, stroke:#333;
+​
+    Update_TF_Script[\"Update the TF script to<br>use the new hidden field name"/];
+​
+    Field_Rename{"Can you adjust<br>the field name <br>('name' attribute)?"}; style Field_Rename fill:#f1f1f1, stroke:#333;
+    Set_TF_Fieldname["Use the 'xxTrustedFormCertUrl' for the fieldname"];
+​
+    Start-->Support_JS;
+    Support_JS--No-->Stop;
+    Support_JS--Yes-->Form_Tag;
+    Form_Tag--Yes-->Capture_Dynamic;
+    Form_Tag--No-->Create_Hidden_Field-->Options;
+    Options--"1 - preferred"-->Callback-->Go;
+    Options-.-2-.->Update_TF_Script-.->Go;
+​
+    Capture_Dynamic--Yes-->Go;
+    Capture_Dynamic--No-->Field_Rename;
+    Field_Rename--Yes-->Set_TF_Fieldname;
+    Field_Rename--No-->Create_Hidden_Field;
+    Set_TF_Fieldname-->Go;
+​
+  </div>
+​
+​
+</body>
+</html>
